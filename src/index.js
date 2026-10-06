@@ -1,13 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import Header from './components/Header';
+import { AppProvider } from './services/AppContext';
+import {AuthProvider} from './services/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <AuthProvider>
+        <AppProvider>
+          <Header />
+          <div className='app-container'>
+            <App />
+          </div>
+        </AppProvider>
+      </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
